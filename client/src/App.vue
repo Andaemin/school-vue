@@ -1,11 +1,3 @@
-<template>
-  <v-app>
-    <v-main>
-      <router-view/>
-    </v-main>
-  </v-app>
-</template>
-
 <script>
 
 export default {
@@ -16,3 +8,12 @@ export default {
   }),
 }
 </script>
+
+<template>
+  <v-container>
+    <v-app>
+        <router-link to="/"></router-link>
+        <router-view/>
+    </v-app>
+</v-container>
+</template>

@@ -1,5 +1,4 @@
 <template>
-  <v-container>
     <v-row class="text-center">
         <v-col>
             <v-text-field v-model="name" label="name"></v-text-field>
@@ -13,7 +12,6 @@
             </div>
         </v-col>
     </v-row>
-  </v-container>
 </template>
 
 <script>
