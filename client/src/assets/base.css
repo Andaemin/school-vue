@@ -1,0 +1,28 @@
+@import url('https://hangeul.pstatic.net/hangeul_static/css/nanum-barun-gothic.css');
+
+body {
+  font-family: 'NanumBarunGothic', sans-serif;
+}
+
+b {
+    border-radius: 0.4rem;
+    border: 1rem;
+    padding: 0.2rem;
+    background-color: #ebe9ea;
+}
+
+b.props{
+    border-radius: 0.4rem;
+    border: 1rem;
+    padding: 0.2rem;
+    background-color: #ebe9ea;
+    color: #3a84da;
+}
+
+b.boldTitle{
+    border-radius: 0.4rem;
+    border: 1rem;
+    padding: 0.2rem;
+    background-color: #ebe9ea;
+    color: #dd453a;
+}

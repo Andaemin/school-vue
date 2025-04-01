@@ -4,9 +4,11 @@ module.exports = defineConfig({
   devServer:{
     proxy:{
         "/api":{
-            target: `localhost:3020`
+            target: `localhost:3004`,
+            origin: true
         }
-    }
+    },
+    port:8088
   },
   pluginOptions: {
     vuetify: {
