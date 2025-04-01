@@ -28,5 +28,5 @@ b.boldTitle{
 }
 
 .main-container > :nth-child(n + 3) {
-    margin-top: 3rem;
+    margin-top: 3.5rem;
 }

@@ -22,6 +22,7 @@
                 <h3 class="text-center">Login Benner</h3>
                 <v-text-field v-model="username" label="Enter the user name in the list" variant="underlined"></v-text-field>
                 <v-text-field v-model="pwd" label="이거 뭐 그냥 있는거임" variant="underlined"></v-text-field>
+                <!-- 이거 굳이 pwd 바인딩 안해줘도 됨. vuetify 스타일 해보라고 한듯함. -->
                 <v-btn @click=confirm color="#42A5F5" variant="elevated" SomeUser="SomeUser"><v-icon icon="mdi-checkbox-marked-circle" start/>Submit</v-btn>
             </v-col>
             <v-col cols="2">
