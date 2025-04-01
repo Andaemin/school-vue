@@ -1,15 +1,17 @@
 <script>
 import { defineComponent } from 'vue';
-import DaeminMain from '../components/HelloWorld.vue';
+import Login from '../components/Login.vue';
 
 export default defineComponent({
   name: 'HomeView',
   components: {
-    DaeminMain,
+    Login,
   },
 });
 </script>
 
 <template>
-  <DaeminMain />
+    <v-app>
+        <Login />
+    </v-app>
 </template>
