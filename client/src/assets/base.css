@@ -26,3 +26,7 @@ b.boldTitle{
     background-color: #ebe9ea;
     color: #dd453a;
 }
+
+.main-container > :nth-child(n + 3) {
+    margin-top: 3rem;
+}

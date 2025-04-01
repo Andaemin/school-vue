@@ -4,24 +4,24 @@ import AboutView from '../views/AboutView.vue'
 
 const routes = [
     {
-     path: '/',
-     redirect: '/home'
+        path: '/',
+        redirect: '/home'
     },
-  {
-    path: '/home',
-    name: 'home',
-    component: HomeView
-  },
-  {
-    path: '/about',
-    name: 'about',
-    component: () => import('../views/AboutView.vue')
-  },
+    {
+        path: '/home',
+        name: 'home',
+        component: HomeView
+    },
+    {
+        path: '/about',
+        name: 'about',
+        component: () => import('../views/AboutView.vue')
+    },
 ]
 
 const router = createRouter({
-  history: createWebHashHistory(),
-  routes
+    history: createWebHashHistory(),
+    routes
 })
 
 export default router

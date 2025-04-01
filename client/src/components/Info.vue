@@ -12,6 +12,6 @@ export default defineComponent({
                 <p>이 페이지는 그냥 학교 수업내용 대충 때려박는 페이지입니다. 무지성으로 대충 구겨넣었습니다.</p>
             </v-col>
         </v-row>
-        <h1 class="text-center mt-5 mb-5 pt-4 pb-4 border-b-thin">강의 목록</h1>
+        <h1 class="text-center mt-5 mb-5 pt-4 pb-4 border-b-thin">강의 정리</h1>
     </v-container>
 </template>

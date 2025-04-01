@@ -12,7 +12,7 @@ loadFonts()
 const app = createApp(App)
   .use(router)
   .use(store)
-  .use(axios)
   .use(vuetify)
 
+app.config.globalProperties.$axios=axios
 app.mount('#app')
