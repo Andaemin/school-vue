@@ -1,6 +1,6 @@
 <script>
 import { defineComponent } from 'vue';
-import ToggleSubmit from './ToggleSubmit.vue';
+import ToggleSubmit from './base/ToggleSubmit.vue';
 
 export default defineComponent({
     name: 'BoradComponent',
@@ -83,8 +83,19 @@ export default defineComponent({
                     <v-col cols="3">{{ post.date }}</v-col>
                 </v-row>
             </v-col>
+            <v-col class="">
+                <!-- 나중에 데이터 전역으로 바꾸기. pinia 사용 못함 . ❌-->
+                <ToggleSubmit cols="6" class="" variant="elevated" color="#42A5F5">
+                    <v-icon icon="mdi-checkbox-marked-circle" start/>New post
+                </ToggleSubmit>
+                <ToggleSubmit variant="elevated" class="" color="red">
+                    <v-icon icon="mdi-cancel" start/>delete
+                </ToggleSubmit>
+                <ToggleSubmit class="" variant="text" color="#42A5F5">
+                    <v-icon icon="mdi-checkbox-marked-circle" start/>Update
+                </ToggleSubmit>
+            </v-col>
         </v-row>
-        <ToggleSubmit/>
     </v-container>
 </template>
 <style></style>

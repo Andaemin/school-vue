@@ -1,4 +1,5 @@
 <script>
+import ToggleSubmit from '@/components/base/ToggleSubmit.vue'
 
 export default ({
     name : 'CreatePost',
@@ -10,6 +11,9 @@ export default ({
                 body:""
             }
         }
+    },
+    components : {
+        ToggleSubmit
     },
     methods:{
         async submit(){
@@ -33,12 +37,19 @@ export default ({
 })
 </script>
 <template>
-    <v-container>
-        <v-text-field v-model="article.title" label="글제목"></v-text-field>
-        <v-text-field v-model="article.writerName" label="작성자"></v-text-field>
-        <v-textarea v-model="article.body" label="글내용"></v-textarea>
-        <div class="text-center">
-            <v-btn color="primary" @click="submit()"> 글작성</v-btn>
-        </div>
+    <v-container class="w-50">
+        <h1>글 작성하기</h1>
+        <h4>알아서 아래 양식에 맞춰서 대충 구겨 박으세요</h4>
+        <v-container class="mt-6 pa-0">  
+            <v-text-field v-model="article.title" label="글제목"></v-text-field>
+            <v-text-field v-model="article.writerName" label="작성자"></v-text-field>
+            <v-textarea v-model="article.body" label="글내용"></v-textarea>
+            <ToggleSubmit class="" variant="elevated" color="#42A5F5">
+                <v-icon icon="mdi-checkbox-marked-circle" start/>Complate
+            </ToggleSubmit>
+            <ToggleSubmit color="red">
+                <v-icon icon="mdi-cancel" start/>Cancel
+            </ToggleSubmit>
+        </v-container>
     </v-container>
 </template>
