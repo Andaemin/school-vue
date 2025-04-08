@@ -10,7 +10,7 @@ const connection = new Sequelize("mycollege","root","mhee7173",{
     dialect:"mysql"
 })
 
-const define = require("./database/models/post")
+const define = require("./database/models/test")
 define(connection)
 
 var indexRouter = require('./routes/index');
