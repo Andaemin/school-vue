@@ -31,4 +31,20 @@ router.get('/userjson', function(req, res, next){
     res.json(userjson)
 })
 
+router.get("/postest",async function(req,res){
+    const tester = {
+        title:"test",
+        writerName:"안대민",
+        body:"daemin post test"
+    }
+    
+    const article = await Article.create(tester)
+    console.log(article)
+    res.json({
+      success:true,
+      article:article
+    })
+    
+  })
+
 module.exports = router;

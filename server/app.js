@@ -5,6 +5,14 @@ var cookieParser = require('cookie-parser');
 var morgan = require('morgan');
 const { Sequelize } = require('sequelize')
 
+const connection = new Sequelize("mycollege","root","mhee7173",{
+    host:"localhost",
+    dialect:"mysql"
+})
+
+const define = require("./database/models/post")
+define(connection)
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 

@@ -2,6 +2,7 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import AboutView from '../views/AboutView.vue'
 import CreatePostView from '@/views/CreatePostView.vue'
+import ReadPostView from '@/views/ReadPostView.vue'
 
 const routes = [
     {
@@ -22,6 +23,11 @@ const routes = [
         path: '/post',
         name: 'post',
         component: () => import('../views/CreatePostView.vue')
+    },
+    {
+        path: '/readBoard',
+        name: 'readboard',
+        component: () => import('../views/ReadPostView.vue')
     }
 ]
 

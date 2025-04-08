@@ -85,7 +85,7 @@ export default defineComponent({
             </v-col>
             <v-col class="">
                 <!-- 나중에 데이터 전역으로 바꾸기. pinia 사용 못함 . ❌-->
-                <ToggleSubmit cols="6" class="" variant="elevated" color="#42A5F5">
+                <ToggleSubmit :to="{ name : 'post'}" cols="6" variant="elevated" color="#42A5F5">
                     <v-icon icon="mdi-checkbox-marked-circle" start/>New post
                 </ToggleSubmit>
                 <ToggleSubmit variant="elevated" class="" color="red">

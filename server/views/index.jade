@@ -3,10 +3,12 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
-  p 경로 : /imgDownload, /userjson
+  p 경로 : /imgDownload, /userjson , /users
   p
     a(href="/imgDownload") 이미지 다운로드
   p 
-    a(href='/userjson') 유저 데이터 다운 (json)
+    a(href='/userjson') (‼️임시) 유저 데이터 확인 (json)
   p
     a(href='/users') 응답 테스트용
+  p
+    a(href='/postest') post 요청 테스트용 <- 여기 들어가서 렌더링 ㄴ
