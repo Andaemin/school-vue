@@ -28,8 +28,9 @@ export default defineComponent({
         },
         moveView(post) {
             console.log("이동할 게시글:", post);
-            console.log("이동할 경로:", `/view/${post.no}`);
-            this.$router.push("/view/" + post.no);
+            // console.log("이동할 경로:", `/view/${post.no}`);
+            this.$router.push("/home/" + post.no);
+            // console.log(`test ${this.formatDate}`);
         },
     },
 });
