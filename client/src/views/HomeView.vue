@@ -7,11 +7,13 @@ import ThreeWeek from "@/components/Threeweek.vue";
 export default defineComponent({
     name: "HomeView",
     data() {
-        count: 4;
-        // 아 시발 더보기 언젠가 추가할것. 대충 slice 랑 map 사용.
-        // 반복문 vue 내장객체 알아볼것,
-        // gpt 돌리면 나오는지 해볼것.
-        // ketword : computed, v-for...?,
+        return {
+            // count: 4,
+            // 아 시발 더보기 언젠가 추가할것. 대충 slice 랑 map 사용.
+            // 반복문 vue 내장객체 알아볼것,
+            // gpt 돌리면 나오는지 해볼것.
+            // ketword : computed, v-for...?,
+        };
     },
     components: {
         InfoComponent,

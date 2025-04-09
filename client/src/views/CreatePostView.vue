@@ -34,7 +34,7 @@ export default {
             if (this.errorsMsg.title || this.errorsMsg.body) return;
 
             try {
-                const res = await this.$axios.post("/api/write", this.postForm);
+                const res = await this.$axios.post("/api/postest", this.postForm);
                 if (res.data.success) {
                     const no = res.data.article.no;
                     this.$router.push("/home" + no);

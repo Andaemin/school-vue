@@ -36,7 +36,6 @@ router.get("/postest", async function (req, res) {
         writerName: "안대민",
         body: "daemin post test",
     };
-
     const article = await Article.create(tester);
     console.log(article);
     res.json({
@@ -44,5 +43,14 @@ router.get("/postest", async function (req, res) {
         article: article,
     });
 });
+// post 나중에 알아서 좀 분리할것.
 
+router.post("/api/postest", async function (req, res) {
+    console.log(res.body);
+    const postForm = await Article.create(req.body);
+    res.json({
+        success: true,
+        article: postForm,
+    });
+});
 module.exports = router;
