@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const fs = require("fs");
 const path = require("path");
+const { where } = require("sequelize");
 
 router.get("/", function (req, res, next) {
     res.render("index", { title: "daeminExpress" });
@@ -40,17 +41,53 @@ router.get("/postest", async function (req, res) {
     console.log(article);
     res.json({
         success: true,
+        tester: article,
+    });
+});
+
+// post 나중에 알아서 좀 분리할것.
+// 확인용 get 요청 하고, jade에 대충 경로 박아넣기.
+
+// 학교용 (교수님 코드)
+// router.post("/api/board", async function (req, res) {
+//     console.log(req.body);
+//     const article = await Article.create(req.body);
+//     res.json({
+//         success: true,
+//         article: article,
+//     });
+// });
+
+//젖같아서 확인해보는용
+router.post("/api/board", async function (req, res) {
+    console.log(req.body);
+
+    try {
+        const article = await Article.create(req.body);
+        res.json({
+            success: true,
+            article: article,
+        });
+    } catch (err) {
+        console.error(`에러 씨발 : ${err}`);
+        res.status(500).json({
+            success: false,
+            message: "안됨",
+        });
+    }
+});
+
+router.get("/api/article/:no", async function (req, res) {
+    const number = req.params.no;
+    const article = await Article.findOne({
+        where: {
+            no: number,
+        },
+    });
+    res.json({
+        success: true,
         article: article,
     });
 });
-// post 나중에 알아서 좀 분리할것.
 
-router.post("/api/postest", async function (req, res) {
-    console.log(res.body);
-    const postForm = await Article.create(req.body);
-    res.json({
-        success: true,
-        article: postForm,
-    });
-});
 module.exports = router;

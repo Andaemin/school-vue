@@ -13,26 +13,26 @@ export default defineComponent({
             count: 4,
         };
     },
-    mounted() {
-        this.fetchArticles();
-    },
-    methods: {
-        async fetchArticles() {
-            const res = await this.$axios.post("/postest");
-            if (res.data.success) {
-                this.list = res.data.list;
-            }
-        },
-        formatDate(date) {
-            return date ? date.slice(0, 10) : "";
-        },
-        moveView(post) {
-            console.log("이동할 게시글:", post);
-            // console.log("이동할 경로:", `/view/${post.no}`);
-            this.$router.push("/home/" + post.no);
-            // console.log(`test ${this.formatDate}`);
-        },
-    },
+    // mounted() {
+    //     this.fetchArticles();
+    // },
+    // methods: {
+    //     async fetchArticles() {
+    //         const res = await this.$axios.post("/postest");
+    //         if (res.data.success) {
+    //             this.list = res.data.list;
+    //         }
+    //     },
+    //     formatDate(date) {
+    //         return date ? date.slice(0, 10) : "";
+    //     },
+    //     moveView(post) {
+    //         console.log("이동할 게시글:", post);
+    //         // console.log("이동할 경로:", `/view/${post.no}`);
+    //         this.$router.push("/home/" + post.no);
+    //         // console.log(`test ${this.formatDate}`);
+    //     },
+    // },
 });
 </script>
 <template>
@@ -70,7 +70,8 @@ export default defineComponent({
             <v-col>
                 <v-col cols="12" class="">
                     <!-- 나중에 데이터 전역으로 바꾸기. pinia 사용 못함 . ❌-->
-                    <ToggleSubmit :to="{ name: 'post' }" cols="6" variant="elevated" color="#42A5F5">
+                    <h4>🎨 버튼 대충 만들어둔거.</h4>
+                    <ToggleSubmit :to="{}" cols="6" variant="elevated" color="#42A5F5">
                         <v-icon icon="mdi-checkbox-marked-circle" start />New post
                     </ToggleSubmit>
                     <ToggleSubmit variant="elevated" class="" color="red">
@@ -79,6 +80,12 @@ export default defineComponent({
                     <ToggleSubmit class="" variant="text" color="#42A5F5">
                         <v-icon icon="mdi-checkbox-marked-circle" start />Update
                     </ToggleSubmit>
+                </v-col>
+                <v-col class="">
+                    <ToggleSubmit :to="{ name: 'createpost' }" cols="6" variant="elevated" color="#42A5F5">
+                        <v-icon icon="mdi-checkbox-marked-circle" start />New post
+                    </ToggleSubmit>
+                    <h4>글 작성</h4>
                 </v-col>
                 <v-sheet class="pa-3" color="grey-lighten-4">
                     <v-row class="font-weight-bold">
