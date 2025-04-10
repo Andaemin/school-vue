@@ -1,7 +1,7 @@
 <script>
 import { defineComponent } from "vue";
 import ToggleSubmit from "./base/ToggleSubmit.vue";
-
+import moment from "moment";
 export default defineComponent({
     name: "BoradComponent",
     components: {
@@ -10,29 +10,45 @@ export default defineComponent({
     data() {
         return {
             list: [],
-            count: 4,
+            count: 0,
+            page: 1,
         };
     },
-    // mounted() {
-    //     this.fetchArticles();
-    // },
-    // methods: {
-    //     async fetchArticles() {
-    //         const res = await this.$axios.post("/postest");
-    //         if (res.data.success) {
-    //             this.list = res.data.list;
-    //         }
-    //     },
-    //     formatDate(date) {
-    //         return date ? date.slice(0, 10) : "";
-    //     },
-    //     moveView(post) {
-    //         console.log("이동할 게시글:", post);
-    //         // console.log("이동할 경로:", `/view/${post.no}`);
-    //         this.$router.push("/home/" + post.no);
-    //         // console.log(`test ${this.formatDate}`);
-    //     },
-    // },
+    // inject: ["moment"],
+    mounted() {
+        this.getArticleList();
+        console.log(this.page);
+    },
+    methods: {
+        async getArticleList() {
+            const res = await this.$axios.post("/api/postdata", {
+                page: this.page,
+            });
+            if (res.data.success) {
+                this.list = res.data.list;
+                this.count = res.data.count;
+            }
+        },
+        formatDate(date) {
+            return moment(date).format("YYYY");
+        },
+        moveView(num) {
+            console.log(num);
+            this.$router.push("/readBoard/" + num.no);
+        },
+        async more() {
+            this.page++;
+            console.log("테스트");
+            var res = await this.$axios.post("/api/postdata", { page: this.page });
+            console.log(`${res.data}`);
+
+            if (res.data.success) {
+                res.data.list.forEach((article) => {
+                    this.list.push(article);
+                });
+            }
+        },
+    },
 });
 </script>
 <template>
@@ -96,13 +112,17 @@ export default defineComponent({
                     </v-row>
                 </v-sheet>
             </v-col>
-            <v-col cols="12" v-for="(post, index) in list" :key="index" @click="moveView(post)" style="cursor: pointer">
-                <v-row class="py-2 border-b-thin">
+            <!-- 테스트용. 나중에 안쪽으로 밀어넣기. -->
+            <v-col cols="12" class="cursor-pointer" v-for="(post, index) in list" :key="index" @click="moveView(post)">
+                <v-row cols="12" class="py-2 border-b-thin">
                     <v-col cols="1">{{ post.no }}</v-col>
                     <v-col cols="5">{{ post.title }}</v-col>
                     <v-col cols="3">{{ post.writerName }}</v-col>
                     <v-col cols="3">{{ formatDate(post.writeTime) }}</v-col>
                 </v-row>
+            </v-col>
+            <v-col class="text-center">
+                <ToggleSubmit v-if="list.length < count" @click="more()"> 더보기</ToggleSubmit>
             </v-col>
         </v-row>
     </v-container>

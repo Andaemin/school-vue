@@ -27,16 +27,28 @@ export default {
         //     this.dummyData = true;
         // }
         const no = this.$route.params.no;
-        console.log(no);
+        console.log("테스트용 : ", no);
         this.getArticle(no);
     },
     methods: {
-        async getArticle(number) {
-            const res = this.$axios.get("/api/article/" + number);
+        async getArticle(no) {
+            const res = await this.$axios.get("/api/article/" + no);
             console.log(res.data);
             if (res.data.success) {
                 this.article = res.data.article;
             }
+        },
+        async remove() {
+            if (!window.confirm("정말 삭제하겠습니까?")) {
+                return;
+            }
+            const res = await this.$axios.delete("/api/postdata/" + this.$route.params.no);
+            if (res.data.success) {
+                this.$router.push("/");
+            }
+        },
+        moveUpdate() {
+            this.$router.push("/update/" + this.$route.params.no);
         },
     },
 };
@@ -55,8 +67,8 @@ export default {
         <v-row class="">
             <v-col>
                 <ToggleSubmit :to="{ name: 'home' }">홈</ToggleSubmit>
-                <ToggleSubmit>삭제</ToggleSubmit>
-                <ToggleSubmit>수정</ToggleSubmit>
+                <ToggleSubmit @click="remove()">삭제</ToggleSubmit>
+                <ToggleSubmit @click="moveUpdate()">수정</ToggleSubmit>
             </v-col>
         </v-row>
     </v-container>

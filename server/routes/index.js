@@ -45,8 +45,9 @@ router.get("/postest", async function (req, res) {
     });
 });
 
-// post 나중에 알아서 좀 분리할것.
+// api 나중에 알아서 좀 분리할것.
 // 확인용 get 요청 하고, jade에 대충 경로 박아넣기.
+// 디렉토리 정리좀.
 
 // 학교용 (교수님 코드)
 // router.post("/api/board", async function (req, res) {
@@ -87,6 +88,43 @@ router.get("/api/article/:no", async function (req, res) {
     res.json({
         success: true,
         article: article,
+    });
+});
+
+//중간 끊기
+
+router.post("/api/postdata", async function (req, res) {
+    console.log("🛰 받은 데이터:", req.body);
+    const page = req.body.page;
+    if (!page) {
+        page = 1;
+    }
+    const offset = (page - 1) * 10;
+    const postList = await Article.findAll({
+        order: [["no", "ASC"]],
+        // 💡 order 는 무조건 배열로 반환.
+        // 사용법 : 컬럼명 , 정렬방향
+        // DESC - 내림차순, ASC - 오름차순,
+        limit: 10, //SQL 그 limit 맞음.
+        offset: offset, //test
+    });
+    const count = await Article.count();
+    res.json({
+        success: true,
+        list: postList,
+        count: count,
+    });
+});
+
+router.delete("/api/postdata/:no", async function (req, res) {
+    const no = req.params.no;
+    await Article.destroy({
+        where: {
+            no: no,
+        },
+    });
+    res.json({
+        success: true,
     });
 });
 
