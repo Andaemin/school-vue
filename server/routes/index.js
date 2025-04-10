@@ -85,6 +85,8 @@ router.get("/api/article/:no", async function (req, res) {
             no: number,
         },
     });
+    article.hits++;
+    await article.save();
     res.json({
         success: true,
         article: article,
@@ -126,6 +128,22 @@ router.delete("/api/postdata/:no", async function (req, res) {
     res.json({
         success: true,
     });
+});
+
+router.post("/api/postdata/update", async function (req, res) {
+    const updatePost = req.body;
+    await Article.update(
+        {
+            title: postdata.title,
+            body: postdata.body,
+            writerName: postdata.writerName,
+        },
+        {
+            where: {
+                no: updatePost.no,
+            },
+        }
+    );
 });
 
 module.exports = router;

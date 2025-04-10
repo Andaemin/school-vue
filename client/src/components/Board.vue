@@ -86,6 +86,8 @@ export default defineComponent({
             <v-col>
                 <v-col cols="12" class="">
                     <!-- 나중에 데이터 전역으로 바꾸기. pinia 사용 못함 . ❌-->
+
+                    <!-- 버튼 샘플 버튼 샘플 -->
                     <h4>🎨 버튼 대충 만들어둔거.</h4>
                     <ToggleSubmit :to="{}" cols="6" variant="elevated" color="#42A5F5">
                         <v-icon icon="mdi-checkbox-marked-circle" start />New post

@@ -35,6 +35,16 @@ const routes = [
         name: "Readboard",
         component: () => import("../views/ReadPostView.vue"),
     },
+    {
+        path: "/update/:no",
+        name: "UpdatePost",
+        component: () => import("../views/UpdatePostView.vue"),
+    },
+    {
+        path: "/join",
+        name: "join",
+        component: () => import("../views/JoinView.vue"),
+    },
 ];
 
 const router = createRouter({

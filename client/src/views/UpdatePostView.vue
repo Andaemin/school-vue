@@ -19,6 +19,9 @@ export default {
     components: {
         ToggleSubmit,
     },
+    mounted() {
+        this.getArticle;
+    },
     methods: {
         async submit() {
             this.errorsMsg = { title: "", body: "" };
@@ -29,13 +32,18 @@ export default {
                 this.errorsMsg.body = "❗️ 내용을 입력해주세요";
             }
             if (this.errorsMsg.title || this.errorsMsg.body) return;
+        },
+        async getArticle() {
+            const res = await this.$axios.get("/api/postdata/" + this.$route.params.no);
+            if (res.data.success) {
+                this.postdata = res.data.postdata;
+            }
+        },
+        async updatePost() {
             try {
-                // 실험용
-                // this.$axios.post("/api/board", this.article);
-                const res = await this.$axios.post("/api/board", this.article);
+                const res = await this.$axios.get("/api/postdata/" + this.$route.params.no);
                 if (res.data.success) {
-                    const no = res.data.article.no;
-                    this.$router.push("/readboard/" + no);
+                    this.$router.replace("/readboard" + this.$router.params.no);
                 }
             } catch (err) {
                 console.error("작성 실패:", err);
@@ -48,13 +56,12 @@ export default {
 <template>
     <v-container class="w-50">
         <h1>📝 작성된 글 수정</h1>
-
         <v-container class="mt-6 pa-0">
             <v-text-field v-model="article.title" label="Title" :error-messages="errorsMsg.title" />
             <v-text-field v-model="article.writerName" label="작성자" />
             <v-textarea v-model="article.body" label="글내용" :error-messages="errorsMsg.body" />
             <!-- 버튼 구별용 -->
-            <ToggleSubmit class="" variant="elevated" color="#42A5F5" @click="submit">
+            <ToggleSubmit class="" variant="elevated" color="#42A5F5" @click="updatePost()">
                 <v-icon icon="mdi-checkbox-marked-circle" start /> Complete
             </ToggleSubmit>
             <ToggleSubmit :to="{ name: 'home' }" class="" variant="elevated">

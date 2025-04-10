@@ -21,8 +21,30 @@ function define(connection) {
             type: Sequelize.DATE,
             defaultValue: Sequelize.NOW,
         },
+        hits: {
+            type: Sequelize.INTEGER,
+            defaultValue: 0,
+        },
     });
 
+    global.User = connection.define("user", {
+        id: {
+            type: Sequelize.STRING(18),
+            primaryKey: true,
+            allowNull: false,
+        },
+        password: {
+            type: Sequelize.STRING(200),
+            allowNull: false,
+        },
+        name: {
+            type: Sequelize.STRING(30),
+        },
+        joinDate: {
+            type: Sequelize.DATE,
+            defaultValue: Sequelize.NOW,
+        },
+    });
     connection.sync({
         alter: true,
     });
