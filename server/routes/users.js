@@ -27,3 +27,5 @@ router.post("/api/join", async function (req, res) {
     });
 });
 module.exports = router;
+
+// todo list 한다

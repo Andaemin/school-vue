@@ -56,10 +56,33 @@ export default {
     <v-container>
         <v-card>
             <v-card-item>
-                <v-text-field label="UserName" variant="underlined"></v-text-field>
-                <v-text-field label="email" variant="underlined"></v-text-field>
-                <v-text-field label="password" type="password" variant="underlined"></v-text-field>
-                <v-text-field label="password check" type="password" variant="underlined"></v-text-field>
+                <v-card-title class="text-h4 font-weight-bold"> ✅ 회원가입</v-card-title>
+                <v-text-field
+                    v-model="user.name"
+                    :error-messages="errorsMsg.name"
+                    label="UserName"
+                    variant="underlined"
+                ></v-text-field>
+                <v-text-field
+                    v-model="user.id"
+                    :error-messages="errorsMsg.id"
+                    label="email"
+                    variant="underlined"
+                ></v-text-field>
+                <v-text-field
+                    v-model="user.password"
+                    :error-messages="errorsMsg.password"
+                    label="password"
+                    type="password"
+                    variant="underlined"
+                ></v-text-field>
+                <v-text-field
+                    v-model="password2"
+                    :error-messages="errorsMsg.password2"
+                    label="password check"
+                    type="password"
+                    variant="underlined"
+                ></v-text-field>
                 <v-text-field label="sex" variant="underlined"></v-text-field>
             </v-card-item>
             <ToggleSubmit @click="join()" cols="6" variant="elevated" color="#42A5F5">
