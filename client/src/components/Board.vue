@@ -30,7 +30,7 @@ export default defineComponent({
             }
         },
         formatDate(date) {
-            return moment(date).format("YYYY");
+            return moment(date).format("MMMM Do YYYY, h:mm:ss a");
         },
         moveView(num) {
             console.log(num);
@@ -87,7 +87,7 @@ export default defineComponent({
                 <v-col cols="12" class="">
                     <!-- 나중에 데이터 전역으로 바꾸기. pinia 사용 못함 . ❌-->
 
-                    <!-- 버튼 샘플 버튼 샘플 -->
+                    <!-- 뭐였지.. -->
                     <h4>🎨 버튼 대충 만들어둔거.</h4>
                     <ToggleSubmit :to="{}" cols="6" variant="elevated" color="#42A5F5">
                         <v-icon icon="mdi-checkbox-marked-circle" start />New post

@@ -4,6 +4,7 @@ import Login from "../components/Login.vue";
 import BoardComponent from "@/components/Board.vue";
 import InfoComponent from "@/components/Info.vue";
 import ThreeWeek from "@/components/Threeweek.vue";
+import Fiveweek from "@/components/fiveweek.vue";
 // import moment from "moment"; provide 안넘겨짐..
 export default defineComponent({
     name: "HomeView",
@@ -26,6 +27,7 @@ export default defineComponent({
         Login,
         ThreeWeek,
         BoardComponent,
+        Fiveweek,
     },
 });
 </script>
@@ -36,6 +38,7 @@ export default defineComponent({
         <Login />
         <ThreeWeek />
         <BoardComponent />
+        <Fiveweek />
     </v-container>
 </template>
 
