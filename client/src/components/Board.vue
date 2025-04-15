@@ -24,13 +24,15 @@ export default defineComponent({
             const res = await this.$axios.post("/api/postdata", {
                 page: this.page,
             });
+            console.log("리스트 응답 체크용.", res.data);
+
             if (res.data.success) {
                 this.list = res.data.list;
                 this.count = res.data.count;
             }
         },
         formatDate(date) {
-            return moment(date).format("MMMM Do YYYY, h:mm:ss a");
+            return date ? moment(date).format("MMMM Do YYYY, h:mm:ss a") : "날짜 없음";
         },
         moveView(num) {
             console.log(num);
@@ -69,16 +71,16 @@ export default defineComponent({
         <v-row>
             <v-col>
                 <h3>‼️ 중요</h3>
-                <h4>다음주 강의까지 해야할것</h4>
+                <h4>다음주 강의까지 해야할것. 완료된건 체크(✅)</h4>
                 <p>
                     # vue version 3.2.13. 3.5 미만버전 문법 사용할것 ( ref 안됨)<br />
-                    1. sql db 연결 ❌ 진짜 절대 안됨 ❌<br />
-                    2. express : 제네레이터로 만듦 ✅<br />
-                    3. Render 될때마다 데이터호출 : require 확인<br />
-                    4. Crud 구현 : 간단한 게시판 만들기. (디자인 틀만 잡아놓음.)<br />
-                    5. 스타일 라이브러리 : less 사용. ( 안써봤는데..)<br />
-                    6. ‼️ Sql 디렉토리 소유권 및 권한설정 ❌❌❌❌❌ <br />
-                    7. workbench : 끝까지 안됨; ❌❌❌❌❌
+                    1. <b>sql db 연결 </b>✅<br />
+                    2. <b>express </b>: 제네레이터로 만듦 ✅<br />
+                    3. <b>Render 될때마다 데이터호출 </b>: 완료 ✅<br />
+                    4. <b>Crud 구현</b> : 간단한 게시판 만들기. ✅<br />
+                    5. <b>스타일 라이브러리 </b>: less 사용. ( 사용 안했음...) ❌<br />
+                    6. ‼️ <b>Sql 디렉토리 소유권 및 권한설정</b> ( 하루 꼬박 걸림.) ✅ <br />
+                    7. <b>workbench </b> 되긴 하나, <b class="props"> 직접적인 컨트롤 안됨. 반영 늦음.</b>)✅
                 </p>
             </v-col>
         </v-row>
@@ -106,9 +108,10 @@ export default defineComponent({
                     <h4>글 작성</h4>
                 </v-col>
                 <v-sheet class="pa-3" color="grey-lighten-4">
-                    <v-row class="font-weight-bold">
+                    <v-row class="font-weight-bold text-center">
                         <v-col cols="1">No.</v-col>
-                        <v-col cols="5">제목</v-col>
+                        <v-col cols="2">제목</v-col>
+                        <v-col cols="3">내용</v-col>
                         <v-col cols="3">작성자</v-col>
                         <v-col cols="3">날짜</v-col>
                     </v-row>
@@ -116,12 +119,15 @@ export default defineComponent({
             </v-col>
             <!-- 테스트용. 나중에 안쪽으로 밀어넣기. -->
             <v-col cols="12" class="cursor-pointer" v-for="(post, index) in list" :key="index" @click="moveView(post)">
-                <v-row cols="12" class="py-2 border-b-thin">
-                    <v-col cols="1">{{ post.no }}</v-col>
-                    <v-col cols="5">{{ post.title }}</v-col>
-                    <v-col cols="3">{{ post.writerName }}</v-col>
-                    <v-col cols="3">{{ formatDate(post.writeTime) }}</v-col>
-                </v-row>
+                <v-sheet class="pa-3">
+                    <v-row cols="12" class="py-2 border-b-thin text-center">
+                        <v-col cols="1">{{ post.no }}</v-col>
+                        <v-col cols="2">{{ post.title || ' " undefined_title " ' }}</v-col>
+                        <v-col cols="3">{{ post.body || ' " 내용 없음 " ' }}</v-col>
+                        <v-col cols="3">{{ post.writerName || ' " 작성자 이름 없음" ' }}</v-col>
+                        <v-col cols="3">{{ formatDate(post.writeTime) }}</v-col>
+                    </v-row>
+                </v-sheet>
             </v-col>
             <v-col class="text-center">
                 <ToggleSubmit v-if="list.length < count" @click="more()"> 더보기</ToggleSubmit>

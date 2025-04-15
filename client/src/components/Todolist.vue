@@ -12,6 +12,7 @@ export default defineComponent({
                 <h1>6 WEEK</h1>
                 <p>✅ 기초적인</p>
                 <p>핵심 키워드 및 내용 정리는 📆 <b>4주차</b> ‼️ 참고할것</p>
+                <p>test</p>
             </v-col>
         </v-row>
     </v-container>

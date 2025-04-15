@@ -27,9 +27,10 @@ function define(connection) {
         },
     });
 
-    global.User = connection.define("user", {
+    global.User = connection.define("User", {
         id: {
-            type: Sequelize.STRING(18),
+            // 하단 alter : true . 해도 탸앱 여전히 int임.
+            type: Sequelize.STRING(30),
             primaryKey: true,
             allowNull: false,
         },

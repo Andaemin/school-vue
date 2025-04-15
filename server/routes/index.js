@@ -84,8 +84,8 @@ router.get("/api/postdata/:no", async function (req, res) {
             no: number,
         },
     });
-    // article.hits++;
-    // await article.save();
+    article.hits++;
+    await article.save();
     res.json({
         success: true,
         article: article,

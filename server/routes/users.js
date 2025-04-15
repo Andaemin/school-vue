@@ -4,11 +4,6 @@ const fs = require("fs");
 const path = require("path");
 const { where } = require("sequelize");
 
-/* GET users listing. */
-router.get("/", function (req, res, next) {
-    res.send("유저 api 테스트용.");
-});
-
 router.post("/join", async function (req, res) {
     const user = req.body;
     const checkUser = await User.findOne({
@@ -17,7 +12,7 @@ router.post("/join", async function (req, res) {
         },
     });
     if (checkUser) {
-        console.log(test);
+        console.log(checkUser);
         res.json({
             success: false,
             message: "이미 가입된 회원입니다.",

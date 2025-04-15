@@ -1,13 +1,11 @@
 <script>
-import { defineComponent } from 'vue';
+import { defineComponent } from "vue";
 
 export default defineComponent({
-    name: 'ToggleSubmit',
-    emits: ['click'],
+    name: "ToggleSubmit",
+    emits: ["click"],
     // inheritAttrs : false
-    methods:{
-        
-    }
+    methods: {},
 });
 </script>
 

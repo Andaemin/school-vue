@@ -61,7 +61,7 @@ export default {
             <v-card-item prepend-icon="mdi-email">
                 <v-card-title class="text-h4 font-weight-bold">{{ article.title }}</v-card-title>
                 <v-card-subtitle class="text-h5">{{ article.writerName }}</v-card-subtitle>
-                <v-card-subtitle class="text">{{ article.hits }}</v-card-subtitle>
+                <v-card-subtitle class="text">조회수 [{{ article.hits }}]</v-card-subtitle>
             </v-card-item>
             <v-card-text class="text-body-1"> {{ article.body }}</v-card-text>
         </v-card>

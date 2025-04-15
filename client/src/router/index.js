@@ -4,6 +4,8 @@ import AboutView from "../views/AboutView.vue";
 import CreatePostView from "@/views/CreatePostView.vue";
 import UpdatePostView from "@/views/UpdatePostView.vue";
 import ReadPostView from "@/views/ReadPostView.vue";
+import JoinView from "../views/JoinView.vue";
+import LoginView from "../views/LoginView.vue";
 
 const routes = [
     {
@@ -41,9 +43,14 @@ const routes = [
         component: () => import("../views/UpdatePostView.vue"),
     },
     {
-        path: "/join",
-        name: "join",
+        path: "/signup",
+        name: "signup",
         component: () => import("../views/JoinView.vue"),
+    },
+    {
+        path: "/login",
+        name: "login",
+        component: () => import("../views/LoginView.vue"),
     },
 ];
 
