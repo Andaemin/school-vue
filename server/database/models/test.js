@@ -48,6 +48,7 @@ function define(connection) {
     });
     connection.sync({
         alter: true,
+        // ⚠️ force 사용 x : 데이터 한번 다 날아갔음.
     });
 }
 

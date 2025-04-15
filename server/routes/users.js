@@ -24,6 +24,28 @@ router.post("/join", async function (req, res) {
         success: true,
     });
 });
+
+router.post("/login", async function (req, res) {
+    const user = req.body;
+    const findUser = await User.findOne({
+        where: {
+            id: user.id,
+            password: user.password,
+        },
+    });
+    if (!findUser) {
+        res.json({
+            success: false,
+            message: " ID 혹은 패스워드를 확인.",
+        });
+        return;
+    }
+
+    res.json({
+        success: true,
+        user: findUser,
+    });
+});
 module.exports = router;
 
 // todo list 한다
