@@ -12,13 +12,13 @@ export default {
                 name: "",
                 id: "",
                 password: "",
-                password2: "",
+                confilm_password: "",
             },
             errorsMsg: {
                 name: "",
                 id: "",
                 password: "",
-                password2: "",
+                confilm_password: "",
             },
         };
     },
@@ -31,8 +31,8 @@ export default {
             if (this.user.password.trim() === "") {
                 this.errorsMsg.password = "❗️ 비밀번호 확인해라.";
             }
-            if (this.user.password2.trim() === "") {
-                this.errorsMsg.password2 = "❗️ 비밀번호 확인확인해라.";
+            if (this.user.confilm_password.trim() === "") {
+                this.errorsMsg.confilm_password = "❗️ 비밀번호 확인확인해라.";
             }
             if (this.user.name.trim() === "") {
                 this.errorsMsg.name = "❗️ 이름없노?";
@@ -77,13 +77,13 @@ export default {
                     variant="underlined"
                 ></v-text-field>
                 <v-text-field
-                    v-model="password2"
-                    :error-messages="errorsMsg.password2"
+                    v-model="confilm_password"
+                    :error-messages="errorsMsg.confilm_password"
                     label="password check"
                     type="password"
                     variant="underlined"
                 ></v-text-field>
-                <v-text-field label="sex" variant="underlined"></v-text-field>
+                <v-text-field label="sex : 횟수 아니다. " variant="underlined"></v-text-field>
             </v-card-item>
             <ToggleSubmit @click="join()" cols="6" variant="elevated" color="#42A5F5">
                 <v-icon icon="mdi-checkbox-marked-circle" start /> Complete

@@ -33,9 +33,9 @@ router.get("/userjson", function (req, res, next) {
 
 router.get("/postest", async function (req, res) {
     const tester = {
-        title: "test",
+        title: "그냥 확인용",
         writerName: "안대민",
-        body: "daemin post test",
+        body: "daemin 테스트. ",
     };
     const article = await Article.create(tester);
     console.log(article);
@@ -62,7 +62,6 @@ router.get("/postest", async function (req, res) {
 //젖같아서 확인해보는용
 router.post("/api/board", async function (req, res) {
     console.log(req.body);
-
     try {
         const article = await Article.create(req.body);
         res.json({
@@ -78,15 +77,15 @@ router.post("/api/board", async function (req, res) {
     }
 });
 
-router.get("/api/article/:no", async function (req, res) {
+router.get("/api/postdata/:no", async function (req, res) {
     const number = req.params.no;
     const article = await Article.findOne({
         where: {
             no: number,
         },
     });
-    article.hits++;
-    await article.save();
+    // article.hits++;
+    // await article.save();
     res.json({
         success: true,
         article: article,
@@ -127,6 +126,7 @@ router.delete("/api/postdata/:no", async function (req, res) {
     });
     res.json({
         success: true,
+        message: "삭제됨.",
     });
 });
 
@@ -134,9 +134,9 @@ router.post("/api/postdata/update", async function (req, res) {
     const updatePost = req.body;
     await Article.update(
         {
-            title: postdata.title,
-            body: postdata.body,
-            writerName: postdata.writerName,
+            title: updatePost.title,
+            body: updatePost.body,
+            writerName: updatePost.writerName,
         },
         {
             where: {
@@ -144,6 +144,10 @@ router.post("/api/postdata/update", async function (req, res) {
             },
         }
     );
+    res.json({
+        success: true,
+        message: "수정됨.",
+    });
 });
 
 module.exports = router;

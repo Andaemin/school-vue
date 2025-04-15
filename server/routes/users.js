@@ -1,12 +1,15 @@
 const express = require("express");
 const router = express.Router();
+const fs = require("fs");
+const path = require("path");
+const { where } = require("sequelize");
 
 /* GET users listing. */
 router.get("/", function (req, res, next) {
-    res.send("respond with a res");
+    res.send("유저 api 테스트용.");
 });
 
-router.post("/api/join", async function (req, res) {
+router.post("/join", async function (req, res) {
     const user = req.body;
     const checkUser = await User.findOne({
         where: {

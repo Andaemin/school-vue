@@ -17,7 +17,7 @@ export default defineComponent({
     // inject: ["moment"],
     mounted() {
         this.getArticleList();
-        console.log(this.page);
+        console.log(` boardvue : ${this.page}`);
     },
     methods: {
         async getArticleList() {

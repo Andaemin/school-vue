@@ -32,7 +32,7 @@ export default {
     },
     methods: {
         async getArticle(no) {
-            const res = await this.$axios.get("/api/article/" + no);
+            const res = await this.$axios.get("/api/postdata/" + no);
             console.log(res.data);
             if (res.data.success) {
                 this.article = res.data.article;
