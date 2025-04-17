@@ -40,11 +40,44 @@ router.post("/login", async function (req, res) {
         });
         return;
     }
+    req.session.user = findUser;
 
     res.json({
         success: true,
         user: findUser,
     });
+});
+
+router.post("/info", async function (req, res) {
+    const sessionUser = req.session.user;
+    if (!sessionUser) {
+        return res.json({
+            isLogin: false,
+            user: null,
+        });
+    }
+
+    const user = await User.findOne({
+        where: {
+            id: sessionUser.id,
+        },
+    });
+
+    if (!user) {
+        return res.json({
+            isLogin: false,
+            user: null,
+        });
+    }
+    res.json({
+        isLogin: true,
+        user: user,
+    });
+});
+
+router.post("/logout", async function (req, res) {
+    res.session.destory();
+    // res.send(),
 });
 module.exports = router;
 

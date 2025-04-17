@@ -33,9 +33,9 @@ router.get("/userjson", function (req, res, next) {
 
 router.get("/postest", async function (req, res) {
     const tester = {
-        title: "그냥 확인용",
-        writerName: "안대민",
-        body: "daemin 테스트. ",
+        title: "Twice",
+        writerName: "Yimnayeon",
+        body: "Yimnayeon nayeonayeon! ",
     };
     const article = await Article.create(tester);
     console.log(article);

@@ -30,7 +30,3 @@ b.boldTitle {
 .main-container > :nth-child(n + 3) {
     margin-top: 3.5rem;
 }
-
-.header-container {
-    margin-top: 3.5rem;
-}

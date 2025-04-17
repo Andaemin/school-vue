@@ -33,12 +33,17 @@ export default {
             }
             try {
                 //여기까지 수업 내용
-                const res = await this.$axios.post("/api/users/login", {
-                    id: this.id,
-                    password: this.password,
-                });
+                const res = await this.$axios.post(
+                    "/api/users/login",
+                    this.user
+                    // {
+                    //     id: this.id,
+                    //     password: this.password,
+                    // }
+                    // 왜 안되는거징...
+                );
                 if (!res.data.success) {
-                    this.user.esg = res.data.message;
+                    // this.user.esg = res.data.message;
                 } else if (res.data.success) {
                     this.$router.push("/home");
                 }
