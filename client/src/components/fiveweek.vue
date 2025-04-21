@@ -40,7 +40,6 @@ export default defineComponent({
                 <v-row class="d-block">
                     <h3>User Profile</h3>
                     <p>회원가입 후 로그인시 아래 프로필 바뀜.</p>
-                    <p>test</p>
                 </v-row>
                 <v-row align="center">
                     <v-col class="" cols="1">
