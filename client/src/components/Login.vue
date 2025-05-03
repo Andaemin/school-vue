@@ -77,24 +77,26 @@ export default {
                 ></v-text-field>
                 <v-text-field v-model="pwd" label="이거 뭐 그냥 있는거임" variant="underlined"></v-text-field>
                 <!-- 이거 굳이 pwd 바인딩 안해줘도 됨. vuetify 스타일 해보라고 한듯함. -->
-                <v-btn @click="confirm" color="#42A5F5" variant="elevated" SomeUser="SomeUser"
+                <v-btn @click="confirm()" color="#42A5F5" variant="elevated" SomeUser="SomeUser"
                     ><v-icon icon="mdi-checkbox-marked-circle" start />Submit</v-btn
                 >
             </v-col>
             <v-col cols="2">
                 <h4>왼쪽에 대충 찌그리면 됨</h4>
-                <p>vind 값 : {{ username }}</p>
+                <p>
+                    <b>vind 값 :</b><b class="props">{{ username }}</b>
+                </p>
                 <div v-for="member in listFitter(members)" :key="member.id">
-                    <p v-if="member.age >= 20">
+                    <p v-if="member.ko_name === username">
                         {{ member.ko_name }}의 나이는 <b class="props">{{ member.age }}</b>
                     </p>
                 </div>
             </v-col>
             <v-col>
-                <h4>User Data List</h4>
-                <div v-for="member in members">
+                <v-card-title> <b class="props">User Data List </b></v-card-title>
+                <v-row v-for="member in members">
                     <p>{{ member.id }}. {{ member.name }} ({{ member.ko_name }})</p>
-                </div>
+                </v-row>
             </v-col>
         </v-row>
     </v-container>
