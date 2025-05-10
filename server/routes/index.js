@@ -95,7 +95,7 @@ router.get("/api/postdata/:no", async function (req, res) {
 //중간 끊기
 
 router.post("/api/postdata", async function (req, res) {
-    console.log("🛰 받은 데이터:", req.body);
+    console.log("🛰 받은 데이터:", req.body.page);
     const page = req.body.page;
     if (!page) {
         page = 1;
