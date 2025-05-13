@@ -47,9 +47,13 @@ export default defineComponent({
                             <v-icon icon="mdi-account-circle" />
                         </v-avatar>
                     </v-col>
-                    <v-col class="">
+                    <v-col v-if="!$store.state.loginUser">
                         <v-card-title class="text-h5">회원이름 </v-card-title>
                         <v-card-subtitle>회원 아이디</v-card-subtitle>
+                    </v-col>
+                    <v-col v-if="$store.state.loginUser">
+                        <v-card-title class="text-h5">회원이름 : {{ $store.state.loginUser.name }} </v-card-title>
+                        <v-card-subtitle>회원 아이디 : {{ $store.state.loginUser.id }} </v-card-subtitle>
                     </v-col>
                 </v-row>
             </v-col>

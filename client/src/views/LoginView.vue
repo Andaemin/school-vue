@@ -33,18 +33,18 @@ export default {
             }
             try {
                 //여기까지 수업 내용
-                const res = await this.$axios.post(
-                    "/api/users/login",
-                    this.user
-                    // {
-                    //     id: this.id,
-                    //     password: this.password,
-                    // }
-                    // 왜 안되는거징...
-                );
+
+                // {
+                //     id: this.id,
+                //     password: this.password,
+                // }
+                // 왜 안되는거징...
+                const res = await this.$axios.post("/api/users/login", this.user);
                 if (!res.data.success) {
                     // this.user.esg = res.data.message;
                 } else if (res.data.success) {
+                    //전역
+                    this.$store.commit("login", res.data.user);
                     this.$router.push("/home");
                 }
             } catch (err) {
@@ -61,12 +61,7 @@ export default {
             <v-card-item>
                 <v-card-title class="text-h4 font-weight-bold"> ✍️ Login!</v-card-title>
                 <v-card-subtitle class="font-weight-bold"> ✅ 로그인 화면입니다. </v-card-subtitle>
-                <v-text-field
-                    v-model="user.id"
-                    :error-messages="errorsMsg.id"
-                    label="email"
-                    variant="underlined"
-                ></v-text-field>
+                <v-text-field v-model="user.id" :error-messages="errorsMsg.id" label="email" variant="underlined"></v-text-field>
                 <v-text-field
                     v-model="user.password"
                     :error-messages="errorsMsg.password"

@@ -38,10 +38,17 @@ export default defineComponent({
             console.log(num);
             this.$router.push("/readBoard/" + num.no);
         },
+        // posthandler() {
+        //     if (this.$store.state.loginUser) {
+        //         this.$router.push({ name: "createpost" });
+        //     } else {
+        //         this.$router.push({ name: "login" });
+        //     }
+        // },
         async more() {
             this.page++;
             console.log("테스트");
-            var res = await this.$axios.post("/api/postdata", { page: this.page });
+            let res = await this.$axios.post("/api/postdata", { page: this.page });
             console.log(`${res.data}`);
 
             if (res.data.success) {
@@ -94,19 +101,20 @@ export default defineComponent({
                     <ToggleSubmit :to="{}" cols="6" variant="elevated" color="#42A5F5">
                         <v-icon icon="mdi-checkbox-marked-circle" start />New post
                     </ToggleSubmit>
-                    <ToggleSubmit variant="elevated" class="" color="red">
-                        <v-icon icon="mdi-cancel" start />delete
-                    </ToggleSubmit>
-                    <ToggleSubmit class="" variant="text" color="#42A5F5">
-                        <v-icon icon="mdi-checkbox-marked-circle" start />Update
-                    </ToggleSubmit>
+                    <ToggleSubmit variant="elevated" class="" color="red"> <v-icon icon="mdi-cancel" start />delete </ToggleSubmit>
+                    <ToggleSubmit class="" variant="text" color="#42A5F5"> <v-icon icon="mdi-checkbox-marked-circle" start />Update </ToggleSubmit>
                 </v-col>
-                <v-col class="">
-                    <ToggleSubmit :to="{ name: 'createpost' }" cols="6" variant="elevated" color="#42A5F5">
+                <v-col>
+                    <ToggleSubmit
+                        @click="$router.push($store.state.loginUser ? { name: 'createpost' } : { name: 'login' })"
+                        cols="6"
+                        variant="elevated"
+                        color="#42A5F5"
+                    >
                         <v-icon icon="mdi-checkbox-marked-circle" start />New post
                     </ToggleSubmit>
-                    <h4>글 작성</h4>
                 </v-col>
+                <h4>글 작성</h4>
                 <v-sheet class="pa-3" color="grey-lighten-4">
                     <v-row class="font-weight-bold text-center">
                         <v-col cols="1">No.</v-col>

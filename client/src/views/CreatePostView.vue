@@ -8,6 +8,7 @@ export default {
             article: {
                 title: "",
                 writerName: "",
+                userSwitch: false,
                 body: "",
             },
             errorsMsg: {
@@ -18,6 +19,12 @@ export default {
     },
     components: {
         ToggleSubmit,
+    },
+    mounted() {
+        if (this.$store.state.loginUser) {
+            this.article.writerName = this.$store.state.loginUser.name;
+            this.article.userSwitch = true;
+        }
     },
     methods: {
         async submit() {
@@ -52,7 +59,7 @@ export default {
 
         <v-container class="mt-6 pa-0">
             <v-text-field v-model="article.title" label="Title" :error-messages="errorsMsg.title" />
-            <v-text-field v-model="article.writerName" label="작성자" />
+            <v-text-field v-model="article.writerName" :readonly="article.userSwitch" label="작성자" />
             <v-textarea v-model="article.body" label="글내용" :error-messages="errorsMsg.body" />
             <!-- 버튼 구별용 -->
             <ToggleSubmit class="" variant="elevated" color="#42A5F5" @click="submit">

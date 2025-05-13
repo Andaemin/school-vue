@@ -4,7 +4,7 @@ export default {
 
     data: () => ({}),
 
-    mounted() {
+    async mounted() {
         this.getUserInfo();
     },
     methods: {
@@ -16,9 +16,10 @@ export default {
         },
 
         async logout() {
-            if (!confirm("정말 로그아웃 하시겠습니까?")) {
-                return;
-            }
+            // if (!confirm("정말 로그아웃 하시겠습니까?")) {
+            //     return;
+            // }
+            // 젖같으니 빼놓기
             const res = await this.$axios.post("/api/users/logout");
             if (res.data.success) {
                 this.$store.commit("logout");
@@ -41,9 +42,7 @@ export default {
                 </v-sheet>
                 <v-col class="" v-if="$store.state.loginUser">
                     <v-col>
-                        <v-card-subtitle class="pa-0 auto"
-                            >{{ $store.state.loginUser.name }}님. 환영합니다</v-card-subtitle
-                        >
+                        <v-card-subtitle class="pa-0 auto">{{ $store.state.loginUser.name }}님. 환영합니다</v-card-subtitle>
                         <v-btn :to="{ name: 'home' }" @click="logout()">로그아웃</v-btn>
                     </v-col>
                 </v-col>

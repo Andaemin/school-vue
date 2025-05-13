@@ -62,8 +62,16 @@ router.get("/postest", async function (req, res) {
 //젖같아서 확인해보는용
 router.post("/api/board", async function (req, res) {
     console.log(req.body);
+    console.log(req.session);
+    const user = await User.findOne({
+        where: {
+            id: req.session.user.id,
+        },
+    });
+
     try {
         const article = await Article.create(req.body);
+        await article.setWriter(user);
         res.json({
             success: true,
             article: article,

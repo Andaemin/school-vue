@@ -46,6 +46,17 @@ function define(connection) {
             defaultValue: Sequelize.NOW,
         },
     });
+
+    User.hasMany(Article, {
+        // sequalize의 association은 카멜케이스만 사용 가능.
+        as: "articles",
+        foreignKey: "writerId",
+    });
+    // belongsTo : 여기서는 Article의 하나의 유저 (누구인지는 뭐 내가 정하는거고)
+    Article.belongsTo(User, {
+        as: "writer",
+        foreignKey: "writerId",
+    });
     connection.sync({
         alter: true,
         // ⚠️ force 사용 x : 데이터 한번 다 날아갔음.
