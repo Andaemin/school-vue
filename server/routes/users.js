@@ -75,10 +75,12 @@ router.post("/info", async function (req, res) {
     });
 });
 
-router.post("/logout", async function (req, res) {
-    res.session.destory();
+router.post("/logout", function (req, res) {
+    req.session.destroy();
+    res.json({ success: true });
     // res.send(),
 });
+
 module.exports = router;
 
 // todo list 한다

@@ -37,14 +37,14 @@ export default {
                 </v-avatar>
                 <v-sheet v-if="!$store.state.loginUser">
                     <v-card-title class="text-h5">회원이름 </v-card-title>
-                    <v-btn :to="{ name: 'login' }" v-if="!$store.state.loginUser">로그인</v-btn>
+                    <v-btn :to="{ name: 'login' }">로그인</v-btn>
                 </v-sheet>
-                <v-col class="" v-else-if="$store.state.loginUser">
+                <v-col class="" v-if="$store.state.loginUser">
                     <v-col>
                         <v-card-subtitle class="pa-0 auto"
                             >{{ $store.state.loginUser.name }}님. 환영합니다</v-card-subtitle
                         >
-                        <v-btn :to="{ name: 'login' }" @click="logout()">로그아웃</v-btn>
+                        <v-btn :to="{ name: 'home' }" @click="logout()">로그아웃</v-btn>
                     </v-col>
                 </v-col>
             </v-row>
