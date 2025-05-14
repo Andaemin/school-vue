@@ -62,7 +62,7 @@ export default {
         <h1>📝 작성된 글 수정</h1>
         <v-container class="mt-6 pa-0">
             <v-text-field v-model="article.title" label="Title" :error-messages="errorsMsg.title" />
-            <v-text-field v-model="article.writerName" label="작성자" :error-messages="errorsMsg.writerName" />
+            <v-text-field v-model="article.writerName" label="작성자" :readonly="true" :error-messages="errorsMsg.writerName" />
             <v-textarea v-model="article.body" label="글내용" :error-messages="errorsMsg.body" />
             <!-- 버튼 구별용 -->
             <ToggleSubmit class="" variant="elevated" color="#42A5F5" @click="updatePost()">

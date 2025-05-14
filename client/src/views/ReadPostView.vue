@@ -1,5 +1,6 @@
 <script>
 import ToggleSubmit from "@/components/base/ToggleSubmit.vue";
+import { readonly } from "vue";
 
 export default {
     name: "ReadBoard",
@@ -59,6 +60,7 @@ export default {
     <v-container>
         <v-card class="mx-auto">
             <v-card-item prepend-icon="mdi-email">
+                <!-- 교수님은  text field 사용하셔서 편집 읽기 전용으로 해둠. :readonly="true" -->
                 <v-card-title class="text-h4 font-weight-bold">{{ article.title }}</v-card-title>
                 <v-card-subtitle class="text-h5">{{ article.writerName }}</v-card-subtitle>
                 <v-card-subtitle class="text">조회수 [{{ article.hits }}]</v-card-subtitle>

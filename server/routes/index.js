@@ -68,7 +68,6 @@ router.post("/api/board", async function (req, res) {
             id: req.session.user.id,
         },
     });
-
     try {
         const article = await Article.create(req.body);
         await article.setWriter(user);
@@ -110,6 +109,14 @@ router.post("/api/postdata", async function (req, res) {
     }
     const offset = (page - 1) * 10;
     const postList = await Article.findAll({
+        include: [
+            {
+                model: User,
+                as: "writer",
+                attributes: ["name", "id"],
+                // exclude : ["password"]
+            },
+        ],
         order: [["no", "ASC"]],
         // 💡 order 는 무조건 배열로 반환.
         // 사용법 : 컬럼명 , 정렬방향
@@ -155,6 +162,14 @@ router.post("/api/postdata/update", async function (req, res) {
     res.json({
         success: true,
         message: "수정됨.",
+    });
+});
+
+router.post("/api/categorylist/list", async function (req, res) {
+    const catelist = await Category.findAll();
+    res.json({
+        success: true,
+        categoryList: catelist,
     });
 });
 

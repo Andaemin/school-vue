@@ -15,6 +15,7 @@ export default {
                 title: "",
                 body: "",
             },
+            categoryList: [],
         };
     },
     components: {
@@ -27,6 +28,12 @@ export default {
         }
     },
     methods: {
+        async getCategoryList() {
+            const res = this.$axios.post("/api/categorylist/list");
+            if (res.data.success) {
+                this.categoryList = res.data.categoryList;
+            }
+        },
         async submit() {
             this.errorsMsg = { title: "", body: "" };
             if (this.article.title.trim() === "") {

@@ -46,7 +46,26 @@ function define(connection) {
             defaultValue: Sequelize.NOW,
         },
     });
-
+    global.Category = connection.define(
+        "Category",
+        {
+            id: {
+                type: Sequelize.INTEGER,
+                autoIncrement: true,
+                primaryKey: true,
+                allowNull: false,
+            },
+            name: {
+                type: Sequelize.STRING,
+                allowNull: false,
+            },
+        },
+        {
+            createdAt: false,
+            // don't generate an "updatedAt" attribute
+            updatedAt: false,
+        }
+    );
     User.hasMany(Article, {
         // sequalize의 association은 카멜케이스만 사용 가능.
         as: "articles",
@@ -57,6 +76,17 @@ function define(connection) {
         as: "writer",
         foreignKey: "writerId",
     });
+
+    Article.belongsToMany(Category, {
+        as: "catagory",
+        through: "ArticleCategory",
+    });
+
+    Category.belongsToMany(Article, {
+        as: "articles",
+        through: "ArticleCategory",
+    });
+
     connection.sync({
         alter: true,
         // ⚠️ force 사용 x : 데이터 한번 다 날아갔음.
