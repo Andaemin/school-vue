@@ -12,12 +12,24 @@ export default defineComponent({
             list: [],
             count: 0,
             page: 1,
+            filterTag: "",
         };
     },
     // inject: ["moment"],
     mounted() {
         this.getArticleList();
-        console.log(` boardvue : ${this.page}`);
+        console.log(`boardvue : ${this.page}`);
+    },
+    computed: {
+        createtag() {
+            const tags = new Set();
+            this.list.forEach((post) => {
+                if (post.category && post.category.length > 0) {
+                    post.category.forEach((cat) => tags.add(cat.name));
+                }
+            });
+            return [...tags];
+        },
     },
     methods: {
         async getArticleList() {
@@ -115,6 +127,26 @@ export default defineComponent({
                     </ToggleSubmit>
                 </v-col>
                 <h4>글 작성</h4>
+                <ToggleSubmit :to="{ name: 'CategoryCut' }" class="font-weight-bold" color="#C62828" variant="elevated"
+                    >태그삭제 및 관리.</ToggleSubmit
+                >
+
+                <v-row class="pa-2">
+                    <v-btn @click="filterTag = ''" class="ma-1" :color="filterTag === '' ? 'blue-darken-1' : 'grey-lighten-1'" variant="flat">
+                        모두 보기
+                    </v-btn>
+                    <v-btn
+                        v-for="(tag, index) in createtag"
+                        :key="index"
+                        @click="filterTag = tag"
+                        class="ma-1"
+                        :color="filterTag === tag ? 'blue-darken-1' : 'grey-lighten-1'"
+                        variant="flat"
+                    >
+                        {{ tag }}
+                    </v-btn>
+                </v-row>
+
                 <v-sheet class="pa-3" color="grey-lighten-4">
                     <v-row class="font-weight-bold text-center">
                         <v-col cols="1">No.</v-col>
@@ -126,13 +158,22 @@ export default defineComponent({
                 </v-sheet>
             </v-col>
             <!-- 테스트용. 나중에 안쪽으로 밀어넣기. -->
-            <v-col cols="12" class="cursor-pointer" v-for="(post, index) in list" :key="index" @click="moveView(post)">
+            <v-col cols="12" class="cursor-pointer" v-for="(post, index) in filteredList" :key="index" @click="moveView(post)">
                 <v-sheet class="pa-3">
                     <v-row cols="12" class="py-2 border-b-thin text-center">
-                        <v-col cols="1">{{ post.no }}</v-col>
-                        <v-col cols="2">{{ post.title || ' " undefined_title " ' }}</v-col>
-                        <v-col cols="3">{{ post.body || ' " 내용 없음 " ' }}</v-col>
-                        <v-col cols="3">{{ post.writerName || ' " 작성자 이름 없음" ' }}</v-col>
+                        <v-col cols="">{{ post.no }}</v-col>
+                        <v-col cols="">{{ post.title || ' " undefined_title " ' }}</v-col>
+                        <v-col cols="1" v-if="post.category && post.category.length > 0" class="pa-2">
+                            <v-chip v-for="(tag, index) in post.category" :key="index" class="ma-1" color="primary" variant="outlined" size="small">
+                                {{ tag.name }}
+                                <!-- 5. 12이부분 GPT 돌렸습니다... -->
+                            </v-chip>
+                        </v-col>
+                        <v-col v-else>
+                            <v-chip class="bg-red w-1">Non</v-chip>
+                        </v-col>
+                        <!-- <v-col cols="">{{ post.body || ' " 내용 없음 " ' }}</v-col> -->
+                        <v-col cols="">{{ post.writerName || ' " 작성자 이름 없음" ' }}</v-col>
                         <v-col cols="3">{{ formatDate(post.writeTime) }}</v-col>
                     </v-row>
                 </v-sheet>

@@ -78,7 +78,7 @@ function define(connection) {
     });
 
     Article.belongsToMany(Category, {
-        as: "catagory",
+        as: "category",
         through: "ArticleCategory",
     });
 

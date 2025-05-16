@@ -6,6 +6,7 @@ import UpdatePostView from "@/views/UpdatePostView.vue";
 import ReadPostView from "@/views/ReadPostView.vue";
 import JoinView from "../views/JoinView.vue";
 import LoginView from "../views/LoginView.vue";
+import CategoryCut from "@/views/CategoryCut.vue";
 
 const routes = [
     {
@@ -51,6 +52,11 @@ const routes = [
         path: "/login",
         name: "login",
         component: () => import("../views/LoginView.vue"),
+    },
+    {
+        path: "/admin",
+        name: "CategoryCut",
+        component: () => import("../views/CategoryCut.vue"),
     },
 ];
 

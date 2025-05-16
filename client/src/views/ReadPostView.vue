@@ -40,9 +40,9 @@ export default {
             }
         },
         async remove() {
-            if (!window.confirm("정말 삭제하겠습니까?")) {
-                return;
-            }
+            // if (!window.confirm("정말 삭제하겠습니까?")) {
+            //     return;
+            // }
             const res = await this.$axios.delete("/api/postdata/" + this.$route.params.no);
             if (res.data.success) {
                 this.$router.push("/");

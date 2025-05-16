@@ -1,7 +1,11 @@
 <script>
+import ToggleSubmit from "./components/base/ToggleSubmit.vue";
+
 export default {
     name: "App",
-
+    components: {
+        ToggleSubmit,
+    },
     data: () => ({}),
 
     async mounted() {
@@ -46,6 +50,9 @@ export default {
                         <v-btn :to="{ name: 'home' }" @click="logout()">로그아웃</v-btn>
                     </v-col>
                 </v-col>
+                <ToggleSubmit :to="{ name: 'CategoryCut' }" class="font-weight-bold" color="#C62828" variant="elevated"
+                    >태그삭제 및 관리.</ToggleSubmit
+                >
             </v-row>
         </v-container>
         <router-view />

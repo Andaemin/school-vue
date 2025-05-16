@@ -61,8 +61,8 @@ router.get("/postest", async function (req, res) {
 
 //젖같아서 확인해보는용
 router.post("/api/board", async function (req, res) {
-    console.log(req.body);
-    console.log(req.session);
+    // console.log(req.body);
+    // console.log(req.session);
     const user = await User.findOne({
         where: {
             id: req.session.user.id,
@@ -70,6 +70,16 @@ router.post("/api/board", async function (req, res) {
     });
     try {
         const article = await Article.create(req.body);
+        const categorys = req.body.categorys || [];
+        for (let i = 0; i < categorys.length; i++) {
+            let category = await Category.findOne({
+                where: {
+                    id: categorys[i],
+                },
+            });
+            // 5.12 GPT 돌림,..
+            await article.addCategory(category);
+        }
         await article.setWriter(user);
         res.json({
             success: true,
@@ -115,6 +125,10 @@ router.post("/api/postdata", async function (req, res) {
                 as: "writer",
                 attributes: ["name", "id"],
                 // exclude : ["password"]
+            },
+            {
+                model: Category,
+                as: "category",
             },
         ],
         order: [["no", "ASC"]],
@@ -166,11 +180,21 @@ router.post("/api/postdata/update", async function (req, res) {
 });
 
 router.post("/api/categorylist/list", async function (req, res) {
-    const catelist = await Category.findAll();
+    const categoryList = await Category.findAll();
     res.json({
         success: true,
-        categoryList: catelist,
+        categoryList: categoryList,
     });
+});
+router.delete("/api/category/:id", async (req, res) => {
+    const id = req.params.id;
+    try {
+        await Category.destroy({ where: { id } });
+        res.json({ success: true, message: "카테고리 삭제됨" });
+    } catch (err) {
+        console.error("카테고리 삭제 오류:", err);
+        res.status(500).json({ success: false, message: "삭제 실패" });
+    }
 });
 
 module.exports = router;
